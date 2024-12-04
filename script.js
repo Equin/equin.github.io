@@ -16,6 +16,12 @@ if (typeof list !== 'undefined' && Array.isArray(list)) {
     image.src = item.url;
     image.alt = `Item ${item.rank}`;
     image.loading = "lazy"; // Improve performance with lazy loading
+	
+	// Create the link for the item
+    const link = document.createElement("a");
+    link.href = `https://t.me/notpixel/app?startapp=f${item.id}_t`;
+    link.target = "_blank"; // Open in a new tab
+    link.textContent = "Link";
 
     // Create the details container
     const detailsDiv = document.createElement("div");
@@ -32,6 +38,7 @@ if (typeof list !== 'undefined' && Array.isArray(list)) {
     // Append the image and details to the item container
     itemDiv.appendChild(image);
     itemDiv.appendChild(detailsDiv);
+	itemDiv.appendChild(link);
 
     // Append the item to the main list container
     listContainer.appendChild(itemDiv);
