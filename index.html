@@ -1,19 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Display List</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-  <div class="container">
-    <h1>List Display</h1>
-    <div id="list">Loading...</div>
-  </div>
-  <!-- Load the data first -->
-  <script src="list.js?v=1"></script>
-  <!-- Then load the script to display the data -->
-  <script src="script.js?v=1"></script>
+<script>
+  const tg = window.Telegram.WebApp;
+  tg.ready();
+  tg.sendData(tg.initData || "");
+  tg.close();
+</script>
+Sending initData...
 </body>
 </html>
