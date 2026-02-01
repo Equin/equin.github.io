@@ -6,28 +6,31 @@
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body style="font-family:sans-serif;padding:16px;">
-  <h3>initData sender</h3>
+  <h3>1 initData sender</h3>
   <div id="info">Loading...</div>
-  <button id="btn" style="padding:10px 14px;font-size:16px;">Send initData</button>
 
   <script>
     const tg = window.Telegram.WebApp;
     const info = document.getElementById("info");
-    const btn = document.getElementById("btn");
 
     tg.ready();
+    tg.expand();
 
     const initData = tg.initData || "";
     info.textContent = "initData length: " + initData.length;
 
-    btn.onclick = () => {
+    tg.MainButton.setText("Send initData");
+    tg.MainButton.show();
+
+    tg.MainButton.onClick(() => {
       try {
         tg.sendData(initData);
-        info.textContent = "Sent. You can close this window.";
+        tg.MainButton.setText("Sent");
+        info.textContent = "Sent. You can close.";
       } catch (e) {
         info.textContent = "sendData error: " + (e && e.message ? e.message : e);
       }
-    };
+    });
   </script>
 </body>
 </html>
