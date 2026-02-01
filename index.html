@@ -5,13 +5,30 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
-<body>
-<script>
-  const tg = window.Telegram.WebApp;
-  tg.ready();
-  tg.sendData(tg.initData || "");
-  tg.close();
-</script>
-Sending initData...
+<body style="font-family: sans-serif; padding: 16px;">
+  <h3>initData sender</h3>
+  <div id="info">Loading...</div>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+
+    function log(msg) {
+      document.getElementById("info").textContent = msg;
+    }
+
+    tg.ready();
+
+    // Дай Telegram трошки часу віддати контекст
+    setTimeout(() => {
+      const initData = tg.initData || "";
+      log("initData length: " + initData.length);
+
+      // Відправляємо навіть якщо порожнє, щоб побачити реакцію бота
+      tg.sendData(initData);
+
+      // Закриваємо з невеликою затримкою
+      setTimeout(() => tg.close(), 800);
+    }, 300);
+  </script>
 </body>
 </html>
